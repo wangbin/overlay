@@ -102,9 +102,9 @@ src_install(){
 	doconfd postgis_dbs
 
 	if [ ! -z "${require_soft_upgrade}" ]; then
-		grep "'C'" -B 4 "${D}"usr/share/postgresql-${PGVER}/contrib/lwpostgis.sql | \
+		grep "'C'" -B 4 "${D}"usr/share/postgresql-${PGVER}/contrib/postgis-1.5/postgis.sql | \
 			grep -v "'sql'" > \
-				"${D}"usr/share/postgresql/contrib/load_before_upgrade.sql
+				"${D}"usr/share/postgresql/contrib/postgis-1.5/load_before_upgrade.sql
 	fi
 }
 
@@ -155,7 +155,7 @@ pkg_config(){
 				safe_exit "Unable to createlang plpgsql ${mydb}."
 			fi
 			(psql -q -U ${myuser} ${mydb} -f \
-				"${ROOT}"usr/share/postgresql-${PGVER}/contrib/postgis-1.5/lwpostgis.sql &&
+				"${ROOT}"usr/share/postgresql-${PGVER}/contrib/postgis-1.5/postgis.sql &&
 			psql -q -U ${myuser} ${mydb} -f \
 				"${ROOT}"usr/share/postgresql-${PGVER}/contrib/postgis-1.5/spatial_ref_sys.sql) 2>\
 					"${logfile}"
