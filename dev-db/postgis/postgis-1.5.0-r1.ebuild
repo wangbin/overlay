@@ -155,9 +155,9 @@ pkg_config(){
 				safe_exit "Unable to createlang plpgsql ${mydb}."
 			fi
 			(psql -q -U ${myuser} ${mydb} -f \
-				"${ROOT}"usr/share/postgresql-${PGVER}/contrib/lwpostgis.sql &&
+				"${ROOT}"usr/share/postgresql-${PGVER}/contrib/postgis-1.5/lwpostgis.sql &&
 			psql -q -U ${myuser} ${mydb} -f \
-				"${ROOT}"usr/share/postgresql-${PGVER}/contrib/spatial_ref_sys.sql) 2>\
+				"${ROOT}"usr/share/postgresql-${PGVER}/contrib/postgis-1.5/spatial_ref_sys.sql) 2>\
 					"${logfile}"
 			if [ "$(grep -c ERROR "${logfile}")" \> 0 ]; then
 				safe_exit "Unable to load sql files."
@@ -172,21 +172,21 @@ pkg_config(){
 				"VACUUM FREEZE;" || die "Unable to set VACUUM FREEZE option"
 			fi
 		else
-			if [ -e "${ROOT}"usr/share/postgresql-${PGVER}/contrib/load_before_upgrade.sql ];
+			if [ -e "${ROOT}"usr/share/postgresql-${PGVER}/contrib/postgis-1.5/load_before_upgrade.sql ];
 			then
 				einfo "Updating the dynamic library references"
 				psql -q -f \
-					"${ROOT}"usr/share/postgresql-${PGVER}/contrib/load_before_upgrade.sql\
+					"${ROOT}"usr/share/postgresql-${PGVER}/contrib/postgis-1.5/load_before_upgrade.sql\
 						2> "${logfile}"
 				if [ "$(grep -c ERROR "${logfile}")" \> 0 ]; then
 					safe_exit "Unable to update references."
 				fi
 			fi
-			if [ -e "${ROOT}"usr/share/postgresql/contrib/lwpostgis_upgrade.sql ];
+			if [ -e "${ROOT}"usr/share/postgresql/contrib/postgis-1.5/lwpostgis_upgrade.sql ];
 			then
 				einfo "Running soft upgrade"
 				psql -q -U ${myuser} ${mydb} -f \
-					"${ROOT}"usr/share/postgresql/contrib/lwpostgis_upgrade.sql 2>\
+					"${ROOT}"usr/share/postgresql/contrib/postgis-1.5/lwpostgis_upgrade.sql 2>\
 						"${logfile}"
 				if [ "$(grep -c ERROR "${logfile}")" \> 0 ]; then
 					safe_exit "Unable to run soft upgrade."
