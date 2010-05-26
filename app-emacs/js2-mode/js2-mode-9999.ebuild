@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
-SITEFILE="50${PN}-gentoo.el"
+#SITEFILE="50${PN}-gentoo.el"
 
 pkg_postinst() {
 	elisp-site-regen
