@@ -1,0 +1,11 @@
+--- config/configure.in	2009-02-24 22:33:03.000000000 +0100
++++ config/configure.in.new	2010-02-01 05:23:35.320000010 +0100
+@@ -486,7 +486,7 @@
+ else
+   OCAMLVERSION=`$OCAMLC -v | sed -n -e 's|.*version* *\(.*\)$|\1|p' `
+   case "$OCAMLVERSION" in
+-    "$REQUIRED_OCAML"*|3.11.0*|3.10.*|3.09.*|3.08.4*|3.08.3*) ;;
++    "$REQUIRED_OCAML"*|3.11.*|3.10.*|3.09.*|3.08.4*|3.08.3*) ;;
+     *)
+         echo "Need build"
+         BUILD_OCAML=yes
