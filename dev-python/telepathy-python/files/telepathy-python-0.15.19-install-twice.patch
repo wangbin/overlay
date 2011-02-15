@@ -1,0 +1,16 @@
+--- src/Makefile.am	2010-06-10 02:28:59.000000000 +0800
++++ src/Makefile.am.new	2011-02-16 00:40:09.972000025 +0800
+@@ -13,10 +13,12 @@
+ spec_dir = $(top_srcdir)/spec
+ spec_files := $(patsubst $(spec_dir)%.xml,_generated%.py,$(wildcard $(spec_dir)/*.xml))
+ 
++# We leave _generated/errors.py out of here because there exists a
++# spec/errors.xml file, so that means there'll be a
++# _generated/errors.py in $(spec_files). See fd.o#32526
+ BUILT_SOURCES = \
+ 	_generated/interfaces.py \
+ 	_generated/constants.py \
+-	_generated/errors.py \
+ 	_generated/__init__.py \
+ 	$(spec_files)
+ 
