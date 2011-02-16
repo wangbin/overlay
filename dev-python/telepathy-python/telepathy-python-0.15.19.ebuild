@@ -22,10 +22,11 @@ DEPEND="dev-libs/libxslt"
 RDEPEND=">=dev-python/dbus-python-0.80"
 
 src_prepare() {
-	python_src_prepare
+	#python_src_prepare
 
 	# Don't install _generated/errors.py twice, bug #348386
 	epatch "${FILESDIR}/${P}-install-twice.patch"
+    python_copy_sources
 	eautoreconf
 }
 

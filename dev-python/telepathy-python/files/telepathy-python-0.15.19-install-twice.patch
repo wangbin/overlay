@@ -1,6 +1,21 @@
---- src/Makefile.am	2010-06-10 02:28:59.000000000 +0800
-+++ src/Makefile.am.new	2011-02-16 00:40:09.972000025 +0800
-@@ -13,10 +13,12 @@
+From 0c4e6e9f41b24bbb7ea33653b8a81ff79c0ea032 Mon Sep 17 00:00:00 2001
+From: Reimundo Heluani <rheluani@gmail.com>
+Date: Tue, 21 Dec 2010 12:25:22 +0000
+Subject: [PATCH] src: don't install _generated/errors.py twice
+
+Fixes: fd.o#32526
+
+Signed-off-by: Jonny Lamb <jonny.lamb@collabora.co.uk>
+---
+ NEWS            |    5 +++++
+ src/Makefile.am |    4 +++-
+ 2 files changed, 8 insertions(+), 1 deletions(-)
+
+diff --git a/src/Makefile.am b/src/Makefile.am
+index 135f2f0..ede1fc3 100644
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -13,10 +13,12 @@ telepathy_PYTHON = \
  spec_dir = $(top_srcdir)/spec
  spec_files := $(patsubst $(spec_dir)%.xml,_generated%.py,$(wildcard $(spec_dir)/*.xml))
  
@@ -14,3 +29,6 @@
  	_generated/__init__.py \
  	$(spec_files)
  
+-- 
+1.7.2.3
+
