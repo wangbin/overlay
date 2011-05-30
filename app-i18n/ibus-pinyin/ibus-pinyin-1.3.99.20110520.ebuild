@@ -1,11 +1,11 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/ibus-pinyin/ibus-pinyin-1.3.99.20101029.ebuild,v 1.1 2010/11/05 14:28:59 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/ibus-pinyin/ibus-pinyin-1.3.99.20110520.ebuild,v 1.1 2011/05/30 12:06:09 naota Exp $
 
-EAPI="2"
+EAPI="3"
 PYTHON_DEPEND="2:2.5"
 PYTHON_USE_WITH="sqlite"
-inherit python
+inherit python eutils
 
 PYDB_TAR="pinyin-database-1.2.99.tar.bz2"
 DESCRIPTION="Chinese PinYin IMEngine for IBus Framework"
@@ -16,11 +16,13 @@ SRC_URI="http://ibus.googlecode.com/files/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="nls opencc +boost"
+IUSE="boost nls"
 
-RDEPEND=">=app-i18n/ibus-1.3
-	boost? ( >=dev-libs/boost-1.39 )
-	opencc? ( >=app-i18n/opencc-0.1.2 )
+RDEPEND=">=app-i18n/ibus-1.3.99
+	boost? (
+		>=dev-libs/boost-1.39
+		!=dev-libs/boost-1.46.1
+	)
 	sys-apps/util-linux
 	nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
@@ -29,18 +31,17 @@ DEPEND="${RDEPEND}
 
 pkg_setup() {
 	python_set_active_version 2
+	python_pkg_setup
 }
 
 src_prepare() {
 	cp "${DISTDIR}/${PYDB_TAR}" "${S}"/data/db/open-phrase/ || die
 	mv py-compile py-compile.orig || die
 	ln -s "$(type -P true)" py-compile || die
-
-    epatch "${FILESDIR}"/${PN}-1.3.99.20110217-m_instance.patch
 }
 
 src_configure() {
-	econf $(use_enable nls) $(use_enable boost) $(use_enable opencc) --enable-db-open-phrase || die
+	econf $(use_enable nls) $(use_enable boost) --enable-db-open-phrase
 }
 
 src_install() {
@@ -51,8 +52,6 @@ src_install() {
 
 pkg_postinst() {
 	python_mod_optimize /usr/share/${PN}
-	
-	use boost || elog "You have disable boost use flag, do not report bug as that's not supported"
 }
 
 pkg_postrm() {
