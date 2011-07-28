@@ -24,7 +24,6 @@ src_prepare() {
 	# Custom changes for gentoo
 	epatch "${FILESDIR}/${PN}-3.12.5-gentoo-fixups.diff"
 	epatch "${FILESDIR}/${PN}-3.12.6-gentoo-fixup-warnings.patch"
-    epatch "${FILESDIR}/${PN}-3.12.10-Linux3.0.mk.patch"
 
 	cd "${S}"/mozilla/security/coreconf
 	# hack nspr paths
@@ -52,6 +51,10 @@ src_prepare() {
 		lib/ssl/config.mk || die
 	sed -i -e "/CRYPTOLIB/s:\$(SOFTOKEN_LIB_DIR):../../lib/freebl/\$(OBJDIR):" \
 		cmd/platlibs.mk || die
+
+	# copy Linux2.6.mk to Linux3.0.mk if the latter doesn't exist
+	test -f "${S}"/mozilla/security/coreconf/Linux3.0.mk ||
+		cp "${S}"/mozilla/security/coreconf/Linux2.6.mk "${S}"/mozilla/security/coreconf/Linux3.0.mk
 }
 
 src_compile() {
