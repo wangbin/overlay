@@ -18,6 +18,6 @@ KEYWORDS="~amd64 ~x86"
 SLOT="0"
 IUSE=""
 
-RDEPEND="dev-python/stuptools
+RDEPEND="dev-python/setuptools
 	dev-python/virtualenv"
 DEPEND="${RDEPEND}"
