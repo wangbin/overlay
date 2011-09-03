@@ -12,11 +12,8 @@ SRC_URI="http://libgooglepinyin.googlecode.com/files/${P}.tar.bz2"
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="nls"
 
 RDEPEND="app-i18n/ibus
 	app-i18n/opencc"
 
 DEPEND="${RDEPEND}"
-
-CMAKE_IN_SOURCE_BUILD=1
