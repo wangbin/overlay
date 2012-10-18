@@ -15,3 +15,8 @@ IUSE=""
 
 RDEPEND="app-i18n/librime"
 DEPEND="${RDEPEND}"
+
+src_unpack() {
+        unpack ${A}
+        mv ${PN}* ${P} || die
+}
