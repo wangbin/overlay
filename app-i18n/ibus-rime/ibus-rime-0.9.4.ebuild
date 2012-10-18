@@ -20,7 +20,7 @@ COMMON_DEPEND="app-i18n/ibus
 DEPEND="${COMMON_DEPEND}
 	dev-util/cmake"
 RDEPEND="${COMMON_DEPEND}
-	app-i18n/rime-data"
+	app-i18n/brise"
 
 src_prepare() {
 	sed -i -e "/libexecdir/s:/usr/lib:/usr/libexec:" Makefile || die
