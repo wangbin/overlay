@@ -13,7 +13,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="app-i18n/librime"
+RDEPEND="app-i18n/librime
+	!app-i18n/rime-data"
 DEPEND="${RDEPEND}"
 
 src_unpack() {
