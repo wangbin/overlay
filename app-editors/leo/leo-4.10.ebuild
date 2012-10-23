@@ -18,10 +18,12 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.zip"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE=""
+IUSE="spell"
 
 RDEPEND="app-text/silvercity
-	dev-python/PyQt4[X]"
+	dev-python/PyQt4[X]
+	spell? ( dev-python/pyenchant )"
+
 DEPEND="${RDEPEND}
 	app-arch/unzip"
 
