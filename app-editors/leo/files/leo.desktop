@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Leo
+GenericName=Leonine Editor with Outlines
+Comment=Leo is A premier Integrated Development Environment, fully scriptable using Python
+TryExec=/usr/bin/leo
+Exec=/usr/bin/leo
+Icon=leo
+Categories=Development;TextEditor;
+StartupWMClass=Leo

@@ -37,4 +37,6 @@ src_prepare() {
 src_install() {
 	distutils_src_install
 	dohtml -r leo/doc/html/* || die "dohtml failed"
+	domenu "${FILESDIR}/leo.deskctop" || die
+	wicon "${S}"/leo/Icons/leoapp32.png leo.png
 }
