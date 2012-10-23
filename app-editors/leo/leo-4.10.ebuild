@@ -32,11 +32,12 @@ S="${WORKDIR}/${MY_P}"
 src_prepare() {
 	distutils_src_prepare
 	epatch "${FILESDIR}/${P}-fix_syntax_errors.patch"
+	sed -e 's///g' "${S}"/leo/plugins/spellpyx.txt
 }
 
 src_install() {
 	distutils_src_install
 	dohtml -r leo/doc/html/* || die "dohtml failed"
+	newicon "${S}"/leo/Icons/leoapp32.png leo.png
 	domenu "${FILESDIR}"/leo.deskctop || die
-	wicon "${S}"/leo/Icons/leoapp32.png leo.png
 }
