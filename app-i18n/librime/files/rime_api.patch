@@ -1,0 +1,13 @@
+diff --git a/src/rime_api.cc b/src/rime_api.cc
+index dd4c058..66c96c2 100644
+--- a/src/rime_api.cc
++++ b/src/rime_api.cc
+@@ -313,7 +313,7 @@ RIME_API void RimeSetOption(RimeSessionId session_id, const char* option, Bool v
+   rime::Context *ctx = session->context();
+   if (!ctx)
+     return;
+-  ctx->set_option(option, bool(value));
++  ctx->set_option(option, Bool(value));
+ }
+ 
+ RIME_API Bool RimeGetOption(RimeSessionId session_id, const char* option) {
