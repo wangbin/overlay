@@ -32,7 +32,3 @@ src_configure() {
 	)
 	cmake-utils_src_configure
 }
-
-src_prepare() {
-        epatch "${FILESDIR}"/rime_api.patch
-}

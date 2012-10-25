@@ -27,7 +27,7 @@ src_prepare() {
 	sed -i -e "/exec/s:/usr/lib:/usr/libexec:" rime.xml || die
 }
 
-# src_prepare() {
-#         # patch the cmake system to make it disable data resource build
-#         epatch "${FILESDIR}"/rime_enging.patch
-# }
+src_prepare() {
+        # patch the cmake system to make it disable data resource build
+        epatch "${FILESDIR}"/rime_enging2.patch
+}
