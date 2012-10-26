@@ -23,6 +23,5 @@ RDEPEND="${COMMON_DEPEND}
 	app-i18n/rime-data"
 
 src_prepare() {
-	sed -i -e "/libexecdir/s:/usr/lib:/usr/libexec:" Makefile || die
-	sed -i -e "/exec/s:/usr/lib:/usr/libexec:" rime.xml || die
+	sed -i -e "s/\ make/\ +make/" Makefile || die
 }
