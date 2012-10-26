@@ -23,5 +23,5 @@ RDEPEND="${COMMON_DEPEND}
 	app-i18n/rime-data"
 
 src_prepare() {
-	sed -i -e "s/\ make/\ +make/" Makefile || die
+	sed -i -e "s/\ make/\ $(MAKE)/" Makefile || die
 }
