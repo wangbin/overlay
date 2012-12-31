@@ -17,7 +17,7 @@ SRC_URI="http://mercurial.selenic.com/release/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="bugzilla emacs gpg test tk zsh-completion doc"
+IUSE="bugzilla emacs gpg test tk zsh-completion"
 
 RDEPEND="bugzilla? ( dev-python/mysql-python )
 	gpg? ( app-crypt/gnupg )
@@ -27,8 +27,7 @@ RDEPEND="bugzilla? ( dev-python/mysql-python )
 DEPEND="emacs? ( virtual/emacs )
 	test? ( app-arch/unzip
 		dev-python/pygments )
-	doc? ( dev-python/docutils 
-               app-text/asciidoc )"
+	app-text/asciidoc"
 
 PYTHON_CFLAGS=(
 	"2.* + -fno-strict-aliasing"
@@ -53,9 +52,8 @@ src_compile() {
 		cd "${S}"/contrib || die
 		elisp-compile mercurial.el || die "elisp-compile failed!"
 	fi
-        cd "${S}"
-	rm -rf contrib/{win32,macosx} || die
-        use doc && emake doc
+
+	rm -rf "${S}"/contrib/{win32,macosx} || die
 }
 
 src_install() {
