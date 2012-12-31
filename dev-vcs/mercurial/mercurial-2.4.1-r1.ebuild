@@ -17,7 +17,7 @@ SRC_URI="http://mercurial.selenic.com/release/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86 ~amd64-fbsd ~x86-fbsd ~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="bugzilla emacs gpg test tk zsh-completion"
+IUSE="bugzilla emacs gpg test tk zsh-completion doc"
 
 RDEPEND="bugzilla? ( dev-python/mysql-python )
 	gpg? ( app-crypt/gnupg )
@@ -27,7 +27,7 @@ RDEPEND="bugzilla? ( dev-python/mysql-python )
 DEPEND="emacs? ( virtual/emacs )
 	test? ( app-arch/unzip
 		dev-python/pygments )
-	app-text/asciidoc"
+	doc? ( dev-python/docutils )"
 
 PYTHON_CFLAGS=(
 	"2.* + -fno-strict-aliasing"
@@ -54,7 +54,7 @@ src_compile() {
 	fi
 
 	rm -rf contrib/{win32,macosx} || die
-	cd "${S}" && make doc || die
+        use doc && emake doc
 }
 
 src_install() {
