@@ -53,7 +53,7 @@ src_compile() {
 		cd "${S}"/contrib || die
 		elisp-compile mercurial.el || die "elisp-compile failed!"
 	fi
-
+        cd "${S}"
 	rm -rf contrib/{win32,macosx} || die
         use doc && emake doc
 }
