@@ -27,7 +27,8 @@ RDEPEND="bugzilla? ( dev-python/mysql-python )
 DEPEND="emacs? ( virtual/emacs )
 	test? ( app-arch/unzip
 		dev-python/pygments )
-	doc? ( dev-python/docutils )"
+	doc? ( dev-python/docutils 
+               app-text/asciidoc )"
 
 PYTHON_CFLAGS=(
 	"2.* + -fno-strict-aliasing"
