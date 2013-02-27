@@ -26,7 +26,7 @@ RDEPEND="${DEPEND}
         dev-python/html2text
         dev-python/httplib2
         dev-python/keyring
-        dev-python/oauth2
+        dev-python/py-oauth2
         dev-python/regex
         dev-python/sqlalchemy
         dev-python/dbus-python
