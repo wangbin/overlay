@@ -6,10 +6,7 @@ EAPI="5"
 
 PYTHON_COMPAT=(python{2_5,2_6,2_7})
 
-EGIT_MASTER="everpad"
-EGIT_BRANCH="master"
-
-inherit distutils-r1 python-r1 git-2
+inherit distutils git-2
 
 EGIT_REPO_URI="git://github.com/nvbn/everpad.git"
 
@@ -19,7 +16,7 @@ SRC_URI=""
 
 LICENSE="X11"
 SLOT="0"
-IUSE=""
+IUSE="test"
 
 KEYWORDS=""
 
@@ -34,10 +31,19 @@ RDEPEND="${DEPEND}
         dev-python/sqlalchemy
         dev-python/dbus-python
         dev-python/setuptools
-        dev-python/pyside
+        dev-python/pyside[webkit]
         x11-libs/gdk-pixbuf
+	dev-python/python-magic
         "
 
-python_install_all() {
-        distutils-r1_python_install_all
+python_test() {
+        esetup.py test
+}
+
+python_install() {
+	distutils_src_install
+        delete_tests() {
+                rm -fr "${ED}$(python_get_sitedir)/everpad/tests"
+        }
+        python_execute_function -q delete_tests
 }

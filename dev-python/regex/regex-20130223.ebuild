@@ -5,8 +5,8 @@ inherit distutils-r1
 
 MY_P="${PN}-2013-02-23"
 
-DESCRIPTION="A new regex implementation intended eventually to replace Python's current re module implementation."
-HOMEPAGE="https://code.google.com/p/mrab-regex-hg/"
+DESCRIPTION="Turn HTML into equivalent Markdown-structured text."
+HOMEPAGE="http://www.aaronsw.com/2002/html2text/"
 SRC_URI="mirror://pypi/${PN:0:1}/${PN}/${MY_P}.tar.gz"
 
 LICENSE="PSF-2"
