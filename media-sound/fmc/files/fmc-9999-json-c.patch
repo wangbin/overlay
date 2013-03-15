@@ -1,0 +1,11 @@
+diff --git a/fmc.c b/fmc.c
+index 78a0448..334fdd4 100644
+--- a/fmc.c
++++ b/fmc.c
+@@ -1,5 +1,5 @@
+ #include <curl/curl.h>
+-#include <json/json.h>
++#include <json-c/json.h>
+ 
+ #include <netinet/in.h>
+ #include <sys/socket.h>
