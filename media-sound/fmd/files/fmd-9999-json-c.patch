@@ -1,0 +1,12 @@
+diff --git a/playlist.c b/playlist.c
+index 89c35af..8a2eb1b 100644
+--- a/playlist.c
++++ b/playlist.c
+@@ -1,6 +1,6 @@
+ #include "playlist.h"
+ 
+-#include <json/json.h>
++#include <json-c/json.h>
+ 
+ #include <stdio.h>
+ #include <stdlib.h>
