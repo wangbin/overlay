@@ -1,0 +1,211 @@
+diff --git a/configure b/configure
+index 4e28da2..c8b94c1 100755
+--- a/configure
++++ b/configure
+@@ -20996,7 +20996,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-getenv(NULL);
++char* c = getenv(NULL);
+   ;
+   return 0;
+ }
+@@ -25036,7 +25036,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-strerror_r(0,NULL,0);
++char* c = strerror_r(0,NULL,0);
+   ;
+   return 0;
+ }
+@@ -25733,7 +25733,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-read(0,NULL,0);
++ssize_t s = read(0,NULL,0);
+   ;
+   return 0;
+ }
+@@ -25797,7 +25797,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-write(0,NULL,0);
++ssize_t s = write(0,NULL,0);
+   ;
+   return 0;
+ }
+@@ -25980,7 +25980,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-dup(0);
++int i = dup(0);
+   ;
+   return 0;
+ }
+@@ -26537,7 +26537,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-truncate("",0);
++int i = truncate("",0);
+   ;
+   return 0;
+ }
+@@ -26566,7 +26566,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-ftruncate(0,0);
++int i = ftruncate(0,0);
+   ;
+   return 0;
+ }
+@@ -26619,7 +26619,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-link("","");
++int i = link("","");
+   ;
+   return 0;
+ }
+@@ -26645,7 +26645,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-symlink("","");
++int i = symlink("","");
+   ;
+   return 0;
+ }
+@@ -26674,7 +26674,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-readlink("",NULL,0);
++ssize_t s = readlink("",NULL,0);
+   ;
+   return 0;
+ }
+@@ -26700,7 +26700,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-fchown(0,0,0);
++int i = fchown(0,0,0);
+   ;
+   return 0;
+ }
+@@ -26784,7 +26784,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-pipe(0);
++int i = pipe(0);
+   ;
+   return 0;
+ }
+@@ -26914,7 +26914,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-mkstemp(NULL);
++int i = mkstemp(NULL);
+   ;
+   return 0;
+ }
+@@ -27796,7 +27796,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-chroot("")
++int i = chroot("")
+   ;
+   return 0;
+ }
+@@ -28125,7 +28125,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-setuid(0)
++int i = setuid(0)
+   ;
+   return 0;
+ }
+@@ -28156,7 +28156,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-seteuid(0)
++int i = seteuid(0)
+   ;
+   return 0;
+ }
+@@ -28190,7 +28190,7 @@ extern "C" int seteuid(uid_t euid);
+ int
+ main ()
+ {
+-seteuid(0)
++int i = seteuid(0)
+   ;
+   return 0;
+ }
+@@ -28223,7 +28223,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-setreuid(0,0)
++int i = setreuid(0,0)
+   ;
+   return 0;
+ }
+@@ -28313,7 +28313,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-setgid(0)
++int i = setgid(0)
+   ;
+   return 0;
+ }
+@@ -28344,7 +28344,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-setegid(0)
++int i = setegid(0)
+   ;
+   return 0;
+ }
+@@ -28378,7 +28378,7 @@ extern "C" int setegid(gid_t egid);
+ int
+ main ()
+ {
+-setegid(0)
++int i = setegid(0)
+   ;
+   return 0;
+ }
+@@ -28411,7 +28411,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-setregid(0,0)
++int i = setregid(0,0)
+   ;
+   return 0;
+ }
+@@ -28733,7 +28733,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ int
+ main ()
+ {
+-sethostname(0,0)
++int i = sethostname(0,0)
+   ;
+   return 0;
+ }

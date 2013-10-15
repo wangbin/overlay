@@ -1,0 +1,39 @@
+diff --git a/src/inetsocketclient.cpp b/src/inetsocketclient.cpp
+index 8482f5d..94ae574 100644
+--- a/src/inetsocketclient.cpp
++++ b/src/inetsocketclient.cpp
+@@ -11,6 +11,8 @@
+ 
+ #include <rudiments/private/winsock.h>
+ 
++#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
++
+ // for addrinfo
+ #ifdef RUDIMENTS_HAVE_NETDB_H
+ 	#include <netdb.h>
+diff --git a/src/modemclient.cpp b/src/modemclient.cpp
+index e5288dd..0884acf 100644
+--- a/src/modemclient.cpp
++++ b/src/modemclient.cpp
+@@ -27,6 +27,8 @@
+ 	#define O_NOCTTY	0
+ #endif
+ 
++#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
++
+ class modemclientprivate {
+ 	friend class modemclient;
+ 	private:
+diff --git a/src/unixsocketclient.cpp b/src/unixsocketclient.cpp
+index f29684f..5b96519 100644
+--- a/src/unixsocketclient.cpp
++++ b/src/unixsocketclient.cpp
+@@ -8,6 +8,8 @@
+ 
+ #include <rudiments/private/winsock.h>
+ 
++#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
++
+ class unixsocketclientprivate {
+ 	friend class unixsocketclient;
+ 	private:

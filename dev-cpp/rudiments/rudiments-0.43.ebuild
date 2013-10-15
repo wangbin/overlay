@@ -21,7 +21,9 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}/${PV}-configure.patch"
+        epatch "${FILESDIR}/${PV}-src.patch"
 	eautoconf
+        epatch "${FILESDIR}/${PV}-configure-gcc4.patch"
 }
 
 src_configure() {
