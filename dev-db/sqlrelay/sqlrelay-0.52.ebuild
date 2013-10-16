@@ -17,7 +17,7 @@ IUSE="freetds sqlite postgres oracle mysql sybase odbc firebird mdb tcl python p
 
 DEPEND="=dev-cpp/rudiments-0.43
         freetds? ( dev-db/freetds )
-        sqlite? ( dev-db/sqlite:3 )
+        sqlite? ( dev-db/sqlite )
         postgres? ( dev-db/postgresql-server )
         oracle? ( dev-db/oracle-instantclient-basic )
         sybase? ( dev-db/freetds )
@@ -33,3 +33,24 @@ DEPEND="=dev-cpp/rudiments-0.43
         mysql? ( virtual/mysql )
         java? ( virtual/jdk )"
 RDEPEND="${DEPEND}"
+
+src_configure() {
+        econf \
+                --docdir="/usr/share/doc/${PF}/html" \
+                $(use !freetds && printf %s --disable-freetds) \
+                $(use !sqlite && prntf %s --disable-sqlite) \
+                $(use !postgres && printf %s --disable-postgresql) \
+                $(use !oracle && printf %s --disable-oracle) \
+                $(use !sybase && printf %s --disable-sybase) \
+                $(use !odbc && printf %s --disable-odbc) \
+                $(use !firebird && printf %s --disable-firebird) \
+                $(use !mdb && printf %s --disable-mdbtools) \
+                $(use !tcl && printf %s --disable-tcl) \
+                $(use !python && printf %s --disable-python) \
+                $(use !perl && printf %s --disable-perl) \
+                $(use !php && printf %s --disable-php) \
+                $(use !erlang && printf %s --disable-erlang) \
+                $(use !ruby && printf %s --disable-ruby) \
+                $(use !mysql && printf %s --disable-mysql) \
+                $(use !java && printf %s --disable-java)
+}
