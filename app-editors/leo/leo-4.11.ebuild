@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="spell"
 
-RDEPEND="dev-python/PyQt4
+RDEPEND="dev-python/PyQt4[X]
 	spell? ( dev-python/pyenchant )"
 
 DEPEND="${RDEPEND}"
