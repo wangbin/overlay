@@ -18,8 +18,16 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="spell"
 
-RDEPEND="app-text/silvercity
-	dev-python/PyQt4
+RDEPEND="dev-python/PyQt4
 	spell? ( dev-python/pyenchant )"
 
 DEPEND="${RDEPEND}"
+
+S="${WORKDIR}/${MY_P}"
+
+src_install() {
+	distutils_src_install
+	dohtml -r leo/doc/html/* || die "dohtml failed"
+	newicon "${S}"/leo/Icons/leoapp32.png leo.png
+	domenu "${FILESDIR}"/leo.desktop || die
+}
