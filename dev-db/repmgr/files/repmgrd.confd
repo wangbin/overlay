@@ -1,0 +1,4 @@
+REPMGRD_EXEC="/usr/bin/repmgrd"
+REPMGRD_USER="postgres"
+REPMGRD_GROUP="postgres"
+REPMGRD_OPTS="-f /etc/repmgr.conf --monitoring-history"

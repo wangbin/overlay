@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-db/repmgr/repmgr-9999.ebuild,v 1.1 2012/09/10 15:10:25 uu Exp $
 EAPI=5
 
-inherit eutils
+inherit eutils systemd
 
 DESCRIPTION="PostgreSQL Replication Manager"
 
@@ -15,22 +15,28 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 
-IUSE=""
+IUSE="systemd"
 
 RDEPEND=">=dev-db/postgresql-base-9.0
         >=dev-db/postgresql-server-9.0
         virtual/pam
         dev-libs/libxslt
-        net-misc/rsync"
-DEPEND=""
+        net-misc/rsync
+	systemd? ( sys-apps/systemd )"
+
+DEPEND="${RDEPEND}"
 
 src_unpack() {
         default
         mv ${MY_P} ${P}
 }
 
+src_prepare() {
+        epatch "${FILESDIR}/${P}-config.c.patch"
+}
+
 src_compile() {
- make USE_PGXS=1
+        make USE_PGXS=1
 }
 
 src_install() {
@@ -42,11 +48,14 @@ src_install() {
   dodir /usr/$(get_libdir)/postgresql-${PGSLOT}/$(get_libdir)/
   insinto /usr/$(get_libdir)/postgresql-${PGSLOT}/$(get_libdir)/
   doins sql/repmgr_funcs.so
-  #fowners postgres:postgres /usr/share/postgresql-${PGSLOT}/contrib/*
   dobin repmgr repmgrd
   dodoc  CREDITS COPYRIGHT README.rst LICENSE TODO
   insinto /etc
   newins repmgr.conf.sample repmgr.conf
   fowners postgres:postgres /etc/repmgr.conf
+  local MY_PN="repmgrd"
+  newinitd ${FILESDIR}/${MY_PN}.initd ${MY_PN}
+  newconfd ${FILESDIR}/${MY_PN}.confd ${MY_PN}
+  use systemd && systemd_dounit ${FILESDIR}/${MY_PN}.service
   ewarn "Remember to modify /etc/repmgr.conf"
 }

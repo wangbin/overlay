@@ -1,0 +1,26 @@
+From 33f161bc5bc11d45a083c4db2103aca5b83fd6eb Mon Sep 17 00:00:00 2001
+From: Chris Angelico <rosuav@gmail.com>
+Date: Mon, 25 Jun 2012 14:23:26 +1000
+Subject: [PATCH] Change node_name config check to compare strings instead of
+ pointers
+
+---
+ config.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/config.c b/config.c
+index 03623ea..19f7e99 100644
+--- a/config.c
++++ b/config.c
+@@ -206,7 +206,7 @@ reload_configuration(char *config_file, t_configuration_options *orig_options)
+ 		return false;
+ 	}
+ 
+-	if (new_options.node_name != orig_options->node_name)
++	if (strcmp(new_options.node_name, orig_options->node_name))
+ 	{
+ 		log_warning(_("\nCannot change standby name, will keep current configuration.\n"));
+ 		return false;
+-- 
+1.7.9.1.267.g17aa0
+

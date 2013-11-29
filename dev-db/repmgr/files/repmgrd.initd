@@ -1,0 +1,11 @@
+#!/sbin/runscript
+
+command=${REPMGRD_EXEC}
+command_args=${REPMGRD_OPTS}
+start_stop_daemon_args="--quiet --background \
+				--user ${REPMGRD_USER} \
+				 --group ${REPMGRD_GROUP}"
+
+depend() {
+        after postgresql
+}

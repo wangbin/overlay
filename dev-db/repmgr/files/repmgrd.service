@@ -1,0 +1,12 @@
+[Unit]
+Description=PostgreSQL Replication Manager
+After=postgresql.target
+
+[Service]
+User=postgres
+Group=postgres
+EnvironmentFile=/etc/conf.d/repmgrd
+ExecStart=/usr/bin/repmgrd $REPMGRD_OPTS
+
+[Install]
+WantedBy=multi-user.target
