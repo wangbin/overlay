@@ -14,27 +14,18 @@ HOMEPAGE="http://www.rethinkdb.com"
 SRC_URI="http://download.rethinkdb.com/dist/${P}.tgz"
 LICENSE="AGPL-3"
 
-# need to add this for various builds:
-# a. with/out tcmalloc_minimal
-# b. precompiled assets?
-IUSE="systemd"
+IUSE=""
 
 RDEPEND=""
 
 DEPEND="${RDEPEND}
 		dev-libs/protobuf[static-libs]
 		dev-libs/protobuf-c
-		dev-ruby/ruby_protobuf
 		dev-util/google-perftools[static-libs]
-		sys-libs/libunwind
 		dev-lang/v8
 		dev-libs/boost
-		virtual/jre
 		sys-libs/ncurses
 		"
-
-# and npm, less, handlebars, coffee
-
 pkg_setup() {
 	enewgroup rethinkdb 71
 	enewuser rethinkdb 71 /bin/bash /var/lib/rethinkdb rethinkdb
@@ -46,6 +37,7 @@ src_configure() {
 
 src_install() {
 	emake STRIP_ON_INSTALL=0 DESTDIR="${D}" install
-        use systemd && systemd_dounit ${FILESDIR}/${PN}.service
-	dodoc COPYRIGHT DEPENDENCIES NOTES README.md
+        systemd_dounit "${FILESDIR}/${PN}.service"
+	systemd_dotmpfilesd "${FILESDIR}/rethinkdb.conf"
+	dodoc COPYRIGHT NOTES README.md
 }
