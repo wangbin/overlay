@@ -38,7 +38,10 @@ src_install() {
   einfo "PGSLOT: ${PGSLOT}"
   dodir /usr/share/postgresql-${PGSLOT}/contrib/
   insinto /usr/share/postgresql-${PGSLOT}/contrib/
-  doins sql/repmgr_funcs.sql repmgr.sql sql/uninstall_repmgr_funcs.sql uninstall_repmgr.sql 
+  doins sql/repmgr_funcs.sql repmgr.sql sql/uninstall_repmgr_funcs.sql uninstall_repmgr.sql
+  dodir /usr/$(get_libdir)/postgresql-${PGSLOT}/$(get_libdir)/
+  insinto /usr/$(get_libdir)/postgresql-${PGSLOT}/$(get_libdir)/
+  doins sql/repmgr_funcs.so
   #fowners postgres:postgres /usr/share/postgresql-${PGSLOT}/contrib/*
   dobin repmgr repmgrd
   dodoc  CREDITS COPYRIGHT README.rst LICENSE TODO
