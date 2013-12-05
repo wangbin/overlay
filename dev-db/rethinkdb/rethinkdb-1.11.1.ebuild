@@ -37,7 +37,7 @@ src_configure() {
 
 src_install() {
 	emake STRIP_ON_INSTALL=0 DESTDIR="${D}" install
-        systemd_dounit "${FILESDIR}/${PN}.service" 'rethinkdb@.service'
-	systemd_dotmpfilesd "${FILESDIR}/rethinkdb.conf"
+        systemd_newunit "${FILESDIR}/"${PN}.service "rethinkdb@.service"
+	systemd_dotmpfilesd "${FILESDIR}"/rethinkdb.conf
 	dodoc COPYRIGHT NOTES README.md
 }
