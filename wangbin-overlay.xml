@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<repositories version="1.0">
+  <repo priority="50" quality="experimental" status="unofficial">
+    <name>wangbin</name>
+    <description lang="en">Wangbin's Ebuild Ward</description>
+    <homepage>https://github.com/wangbin/overlay</homepage>
+    <owner type="person">
+      <email>wangbin.zibo@gmail.com</email>
+      <name>Wang Bin</name>
+    </owner>
+    <source type="git">git://github.com/wangbin/overlay.git</source>
+    <feed>https://github.com/wangbin/overlay/commits/master.atom</feed>
+  </repo>
+</repositories>
