@@ -89,7 +89,7 @@ src_install() {
 	newbashcomp packaging/assets/scripts/rethinkdb.bash ${PN}
 	newinitd packaging/assets/init/rethinkdb ${PN}
 	systemd_newunit "${FILESDIR}/"${PN}.service "rethinkdb@.service"
-	systemd_newtmpfilesd "${FILESDIR}"/${PN}.conf
+	systemd_newtmpfilesd "${FILESDIR}"/${PN}.conf "rethinkdb@.service"
 
 	dodoc COPYRIGHT NOTES.md README.md
 
